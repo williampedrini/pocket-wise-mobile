@@ -4,6 +4,15 @@ api/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Flutter ###
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.metadata
+*.lock
+!pubspec.lock
+
 ### STS ###
 .apt_generated
 .classpath
@@ -32,5 +41,6 @@ build/
 # START Ruler Generated Files
 /CLAUDE.md
 /CLAUDE.md.bak
+.claude
 # END Ruler Generated Files
 

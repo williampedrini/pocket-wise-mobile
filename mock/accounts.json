@@ -1,0 +1,32 @@
+{
+  "id": "DE89370400440532013000",
+  "account_id": {
+    "iban": "DE89370400440532013000"
+  },
+  "account_servicer": {
+    "bic_fi": "COBADEFFXXX",
+    "clearing_system_member_id": "37040044",
+    "name": "Commerzbank AG"
+  },
+  "name": "Main Checking Account",
+  "details": "Personal checking account for daily transactions",
+  "usage": "PRIV",
+  "cash_account_type": "CACC",
+  "product": "Premium Checking",
+  "currency": "EUR",
+  "psu_status": "ACTIVE",
+  "credit_limit": "5000.00",
+  "postal_address": {
+    "address_line": ["Kaiserstraße 16"],
+    "address_type": "ADDR",
+    "building_number": "16",
+    "country": "DE",
+    "country_sub_division": "Hessen",
+    "department": null,
+    "post_code": "60311",
+    "street_name": "Kaiserstraße",
+    "sub_department": null,
+    "town_name": "Frankfurt am Main"
+  },
+  "uid": "550e8400-e29b-41d4-a716-446655440000"
+}

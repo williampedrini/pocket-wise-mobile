@@ -4,8 +4,8 @@ import '../../../../core/theme/app_theme.dart';
 import '../bloc/account_bloc.dart';
 import '../widgets/home_header.dart';
 import '../widgets/balance_card.dart';
-import '../widgets/quick_actions.dart';
 import '../widgets/monthly_overview_chart.dart';
+import '../widgets/transaction_list.dart';
 import '../widgets/bottom_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,23 +40,29 @@ class _HomePageState extends State<HomePage> {
               final balance = state.balance;
               final totalBalance = balance?.balanceAmount.amount ?? 0.0;
               final currency = balance?.balanceAmount.currency ?? state.account.currency;
-              
+              final currencySymbol = currency == 'EUR' ? '€' : '\$';
+
               return SingleChildScrollView(
                 child: Column(
                   children: [
                     HomeHeader(userName: state.account.name.split(' ').first),
                     BalanceCard(
                       totalBalance: totalBalance,
-                      income: 0.0,
-                      expense: 0.0,
-                      currency: currency == 'EUR' ? '€' : '\$',
+                      income: state.totalIncome,
+                      expense: state.totalExpense,
+                      currency: currencySymbol,
                       balanceType: balance?.name,
                       lastUpdated: balance?.lastChangeDateTime,
                     ),
+                    const SizedBox(height: 16),
+                    MonthlyOverviewChart(
+                      transactions: state.transactions,
+                      currency: currencySymbol,
+                    ),
                     const SizedBox(height: 8),
-                    const QuickActions(),
-                    const SizedBox(height: 8),
-                    const MonthlyOverviewChart(),
+                    TransactionList(
+                      transactions: state.transactions,
+                    ),
                     const SizedBox(height: 100),
                   ],
                 ),

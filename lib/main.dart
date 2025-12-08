@@ -9,6 +9,7 @@ import 'features/account/data/datasources/account_remote_datasource.dart';
 import 'features/account/data/repositories/account_repository_impl.dart';
 import 'features/account/domain/usecases/get_account.dart';
 import 'features/account/domain/usecases/get_account_balance.dart';
+import 'features/account/domain/usecases/get_transactions.dart';
 import 'features/account/presentation/bloc/account_bloc.dart';
 import 'features/account/presentation/pages/home_page.dart';
 
@@ -43,6 +44,7 @@ class PocketWiseApp extends StatelessWidget {
         create: (_) => AccountBloc(
           getAccount: GetAccount(repository),
           getAccountBalance: GetAccountBalance(repository),
+          getTransactions: GetTransactions(repository),
         ),
         child: const HomePage(),
       ),

@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../models/account_model.dart';
 import '../models/balance_model.dart';
+import '../models/transaction_model.dart';
 
 abstract class AccountRemoteDataSource {
   Future<AccountModel> getAccount(String iban);
   Future<BalanceModel?> getAccountBalance(String iban);
+  Future<TransactionsResponseModel> getTransactions(String iban);
 }
 
 class AccountRemoteDataSourceImpl implements AccountRemoteDataSource {
@@ -40,10 +42,24 @@ class AccountRemoteDataSourceImpl implements AccountRemoteDataSource {
       final balances = jsonList
           .map((json) => BalanceModel.fromJson(json))
           .toList();
-      
+
       return BalanceModel.getMostRecent(balances);
     } else {
       throw Exception('Failed to load account balance');
+    }
+  }
+
+  @override
+  Future<TransactionsResponseModel> getTransactions(String iban) async {
+    final response = await client.get(
+      Uri.parse('$baseUrl/api/accounts/$iban/transactions'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      return TransactionsResponseModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load transactions');
     }
   }
 }
