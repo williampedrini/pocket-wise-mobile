@@ -1,0 +1,8 @@
+default_agents = ["claude"]
+
+[gitignore]
+enabled = true
+
+[agents.claude]
+enabled = true
+output_path = "CLAUDE.md"
