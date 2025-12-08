@@ -1,0 +1,7 @@
+{
+  "name": "pocket-wise-mobile",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "json-server --watch mock/db.json --routes mock/routes.json --port 8080 && ngrok http --url=convenient-judi-spectrochemical.ngrok-free.dev 8080"
+  }
+}

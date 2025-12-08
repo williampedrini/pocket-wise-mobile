@@ -1,0 +1,67 @@
+[
+  {
+    "id": 1,
+    "accountIban": "PT50001000006264381000137",
+    "name": "Available Balance",
+    "balance_amount": {
+      "currency": "EUR",
+      "amount": 12500.75
+    },
+    "balance_type": "ITAV",
+    "last_change_date_time": "2025-01-15T14:30:00+01:00",
+    "reference_date": "2025-01-15",
+    "last_committed_transaction": "TXN-2025011500123"
+  },
+  {
+    "id": 2,
+    "accountIban": "PT50001000006264381000137",
+    "name": "Booked Balance",
+    "balance_amount": {
+      "currency": "EUR",
+      "amount": 12750.00
+    },
+    "balance_type": "CLBD",
+    "last_change_date_time": "2025-01-15T14:30:00+01:00",
+    "reference_date": "2025-01-15",
+    "last_committed_transaction": "TXN-2025011500123"
+  },
+  {
+    "id": 3,
+    "accountIban": "PT50001000006264381000137",
+    "name": "Pending Balance",
+    "balance_amount": {
+      "currency": "EUR",
+      "amount": 249.25
+    },
+    "balance_type": "PDNG",
+    "last_change_date_time": "2025-01-15T14:30:00+01:00",
+    "reference_date": "2025-01-15",
+    "last_committed_transaction": null
+  },
+  {
+    "id": 4,
+    "accountIban": "FR7630006000011234567890189",
+    "name": "Available Balance",
+    "balance_amount": {
+      "currency": "EUR",
+      "amount": 45230.50
+    },
+    "balance_type": "ITAV",
+    "last_change_date_time": "2025-01-15T10:00:00+01:00",
+    "reference_date": "2025-01-15",
+    "last_committed_transaction": "TXN-2025011500089"
+  },
+  {
+    "id": 5,
+    "accountIban": "FR7630006000011234567890189",
+    "name": "Booked Balance",
+    "balance_amount": {
+      "currency": "EUR",
+      "amount": 45230.50
+    },
+    "balance_type": "CLBD",
+    "last_change_date_time": "2025-01-15T10:00:00+01:00",
+    "reference_date": "2025-01-15",
+    "last_committed_transaction": "TXN-2025011500089"
+  }
+]

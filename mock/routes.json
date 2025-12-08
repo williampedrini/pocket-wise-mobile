@@ -1,0 +1,5 @@
+{
+  "/api/accounts/:id": "/accounts/:id",
+  "/api/accounts/:id/balances": "/balances?accountIban=:id",
+  "/api/accounts/:id/transactions": "/transactions?accountIban=:id"
+}

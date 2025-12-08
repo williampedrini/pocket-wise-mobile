@@ -85,3 +85,93 @@ Essential commands you'll use daily when working with Flutter.
 | `flutter analyze`       | Analyze code for issues                  |
 | `flutter test`          | Run unit tests                           |
 | `flutter --version`     | Check Flutter version                    |
+
+--- 
+
+## Flutter Debug with IntelliJ Attach
+
+### 🚀 Step 1: Run Flutter from Terminal
+
+```bash
+flutter run -d <device-id>
+```
+
+**Example with simulator:**
+```bash
+flutter run --start-paused -d 1CFD39A0-86A0-49BA-A678-363AD246937F
+```
+
+**Find your device ID:**
+```bash
+flutter devices
+```
+
+### 🔗 Step 2: Copy the Dart VM Service URL
+
+After the app launches, look for this line in terminal output:
+
+```
+The Dart VM service is listening on http://127.0.0.1:XXXXX/YYYYY/
+```
+
+📋 Copy this URL.
+
+### ⚙️ Step 3: Create Dart Remote Debug Configuration
+
+1. Open IntelliJ
+2. Go to **Run → Edit Configurations**
+3. Click **+** (Add New Configuration)
+4. Select **Dart Remote Debug**
+5. Name it (e.g., `Flutter Attach`)
+6. Leave defaults
+7. Click **Apply** → **OK**
+
+### 🎯 Step 4: Attach Debugger
+
+1. Select **Flutter Attach** (or your config name) from the run dropdown
+2. Click the **Debug** button 🐛
+3. Paste the Dart VM service URL when prompted
+4. Click **OK**
+
+---
+
+## Mock Server
+
+Mock server using [json-server](https://github.com/typicode/json-server) to simulate the backend apis endpoints.
+
+### Prerequisites
+
+- Node.js installed
+- json-server v0.17.x installed globally:
+
+```bash
+npm install -g json-server@0.17.4
+```
+
+### Running
+
+```bash
+# Starts the mocks server
+json-server --watch mock/db.json --routes mock/routes.json --port 8080
+# Starts ngrok pointing to the mock server
+ngrok http --url=convenient-judi-spectrochemical.ngrok-free.dev 8080
+```
+
+### Endpoints
+
+| Method | Endpoint                            | Description                  |
+|--------|-------------------------------------|------------------------------|
+| GET    | `/api/accounts/{iban}`              | Get account by IBAN          |
+| GET    | `/api/accounts/{iban}/balances`     | Get balances for account     |
+| GET    | `/api/accounts/{iban}/transactions` | Get transactions for account |
+
+### Example Requests
+
+```bash
+# Get account
+curl http://localhost:8080/api/accounts/DE89370400440532013000
+# Get balances
+curl http://localhost:8080/api/accounts/DE89370400440532013000/balances
+# Get transactions
+curl http://localhost:8080/api/accounts/DE89370400440532013000/transactions
+```

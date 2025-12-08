@@ -1,0 +1,341 @@
+[
+  {
+    "id": 1,
+    "accountIban": "PT50001000006264381000137",
+    "entry_reference": "ENT-2025011500001",
+    "merchant_category_code": "5411",
+    "transaction_amount": {
+      "currency": "EUR",
+      "amount": "-85.50"
+    },
+    "creditor": {
+      "name": "REWE Supermarket",
+    },
+    "creditor_account": {
+      "iban": "DE89370400440987654321"
+    },
+    "creditor_agent": {
+      "bic_fi": "COBADEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 37040044
+      },
+      "name": "Commerzbank AG"
+    },
+    "debtor": {
+      "name": "John Doe"
+    },
+    "debtor_account": {
+      "iban": "PT50001000006264381000137"
+    },
+    "debtor_agent": {
+      "bic_fi": "COBADEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 37040044
+      },
+      "name": "Commerzbank AG"
+    },
+    "bank_transaction_code": {
+      "description": "Card Payment",
+      "code": "PMNT",
+      "sub_code": "MCRD"
+    },
+    "credit_debit_indicator": "DBIT",
+    "status": "BOOK",
+    "booking_date": "2025-01-15",
+    "value_date": "2025-01-15",
+    "transaction_date": "2025-01-15",
+    "balance_after_transaction": {
+      "currency": "EUR",
+      "amount": "12500.75"
+    },
+    "reference_number": "REF-20250115-001",
+    "reference_number_schema": "SCOR",
+    "remittance_information": ["Groceries purchase", "REWE Frankfurt Zeil"],
+    "debtor_account_additional_identification": {
+      "identification": "PT50001000006264381000137",
+      "scheme_name": "IBAN"
+    },
+    "creditor_account_additional_identification": {
+      "identification": "DE89370400440987654321",
+      "scheme_name": "IBAN"
+    },
+    "exchange_rate": null,
+    "note": "Weekly grocery shopping",
+    "transaction_id": "TXN-2025011500001"
+  },
+  {
+    "id": 2,
+    "accountIban": "PT50001000006264381000137",
+    "entry_reference": "ENT-2025011500002",
+    "merchant_category_code": null,
+    "transaction_amount": {
+      "currency": "EUR",
+      "amount": "3500.00"
+    },
+    "creditor": {
+      "name": "John Doe"
+    },
+    "creditor_account": {
+      "iban": "PT50001000006264381000137"
+    },
+    "creditor_agent": {
+      "bic_fi": "COBADEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 37040044
+      },
+      "name": "Commerzbank AG"
+    },
+    "debtor": {
+      "name": "ABC Corporation GmbH"
+    },
+    "debtor_account": {
+      "iban": "DE89370400441122334455"
+    },
+    "debtor_agent": {
+      "bic_fi": "DEUTDEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 50070010
+      },
+      "name": "Deutsche Bank AG"
+    },
+    "bank_transaction_code": {
+      "description": "Salary Payment",
+      "code": "PMNT",
+      "sub_code": "SALA"
+    },
+    "credit_debit_indicator": "CRDT",
+    "status": "BOOK",
+    "booking_date": "2025-01-10",
+    "value_date": "2025-01-10",
+    "transaction_date": "2025-01-10",
+    "balance_after_transaction": {
+      "currency": "EUR",
+      "amount": "12586.25"
+    },
+    "reference_number": "SAL-202501-JD",
+    "reference_number_schema": "SCOR",
+    "remittance_information": ["Salary January 2025", "Employee ID: EMP-12345"],
+    "debtor_account_additional_identification": {
+      "identification": "DE89370400441122334455",
+      "scheme_name": "IBAN"
+    },
+    "creditor_account_additional_identification": {
+      "identification": "PT50001000006264381000137",
+      "scheme_name": "IBAN"
+    },
+    "exchange_rate": null,
+    "note": "Monthly salary",
+    "transaction_id": "TXN-2025011000001"
+  },
+  {
+    "id": 3,
+    "accountIban": "PT50001000006264381000137",
+    "entry_reference": "ENT-2025011200001",
+    "merchant_category_code": "4121",
+    "transaction_amount": {
+      "currency": "EUR",
+      "amount": "-45.00"
+    },
+    "creditor": {
+      "name": "Deutsche Bahn AG"
+    },
+    "creditor_account": {
+      "iban": "DE89100500001234567890"
+    },
+    "creditor_agent": {
+      "bic_fi": "BELADEBEXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 10050000
+      },
+      "name": "Landesbank Berlin"
+    },
+    "debtor": {
+      "name": "John Doe"
+    },
+    "debtor_account": {
+      "iban": "PT50001000006264381000137"
+    },
+    "debtor_agent": {
+      "bic_fi": "COBADEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 37040044
+      },
+      "name": "Commerzbank AG"
+    },
+    "bank_transaction_code": {
+      "description": "Direct Debit",
+      "code": "PMNT",
+      "sub_code": "ESDD"
+    },
+    "credit_debit_indicator": "DBIT",
+    "status": "BOOK",
+    "booking_date": "2025-01-12",
+    "value_date": "2025-01-12",
+    "transaction_date": "2025-01-12",
+    "balance_after_transaction": {
+      "currency": "EUR",
+      "amount": "12541.25"
+    },
+    "reference_number": "DB-TKT-20250112",
+    "reference_number_schema": "SCOR",
+    "remittance_information": ["Train ticket Frankfurt-Berlin", "Booking: ABC123456"],
+    "debtor_account_additional_identification": {
+      "identification": "PT50001000006264381000137",
+      "scheme_name": "IBAN"
+    },
+    "creditor_account_additional_identification": {
+      "identification": "DE89100500001234567890",
+      "scheme_name": "IBAN"
+    },
+    "exchange_rate": null,
+    "note": "Business trip",
+    "transaction_id": "TXN-2025011200001"
+  },
+  {
+    "id": 4,
+    "accountIban": "FR7630006000011234567890189",
+    "entry_reference": "ENT-2025011400001",
+    "merchant_category_code": null,
+    "transaction_amount": {
+      "currency": "EUR",
+      "amount": "1000.00"
+    },
+    "creditor": {
+      "name": "Jane Doe"
+    },
+    "creditor_account": {
+      "iban": "FR7630006000011234567890189"
+    },
+    "creditor_agent": {
+      "bic_fi": "BNPAFRPPXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "FRBLZ",
+        "member_id": 30006
+      },
+      "name": "BNP Paribas"
+    },
+    "debtor": {
+      "name": "Jane Doe"
+    },
+    "debtor_account": {
+      "iban": "PT50001000006264381000137"
+    },
+    "debtor_agent": {
+      "bic_fi": "COBADEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 37040044
+      },
+      "name": "Commerzbank AG"
+    },
+    "bank_transaction_code": {
+      "description": "SEPA Transfer",
+      "code": "PMNT",
+      "sub_code": "ICDT"
+    },
+    "credit_debit_indicator": "CRDT",
+    "status": "BOOK",
+    "booking_date": "2025-01-14",
+    "value_date": "2025-01-14",
+    "transaction_date": "2025-01-14",
+    "balance_after_transaction": {
+      "currency": "EUR",
+      "amount": "45230.50"
+    },
+    "reference_number": "TRF-20250114-001",
+    "reference_number_schema": "SCOR",
+    "remittance_information": ["Transfer to savings", "Monthly savings deposit"],
+    "debtor_account_additional_identification": {
+      "identification": "PT50001000006264381000137",
+      "scheme_name": "IBAN"
+    },
+    "creditor_account_additional_identification": {
+      "identification": "FR7630006000011234567890189",
+      "scheme_name": "IBAN"
+    },
+    "exchange_rate": null,
+    "note": "Savings transfer",
+    "transaction_id": "TXN-2025011400001"
+  },
+  {
+    "id": 5,
+    "accountIban": "PT50001000006264381000137",
+    "entry_reference": "ENT-2025010800001",
+    "merchant_category_code": "5812",
+    "transaction_amount": {
+      "currency": "USD",
+      "amount": "-52.40"
+    },
+    "creditor": {
+      "name": "Restaurant Le Petit Bistro"
+    },
+    "creditor_account": {
+      "iban": "FR7630001007941234567890185"
+    },
+    "creditor_agent": {
+      "bic_fi": "BNPAFRPPXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "FRBLZ",
+        "member_id": 30001
+      },
+      "name": "BNP Paribas"
+    },
+    "debtor": {
+      "name": "John Doe"
+    },
+    "debtor_account": {
+      "iban": "PT50001000006264381000137"
+    },
+    "debtor_agent": {
+      "bic_fi": "COBADEFFXXX",
+      "clearing_system_member_id": {
+        "clearing_system_id": "DEBLZ",
+        "member_id": 37040044
+      },
+      "name": "Commerzbank AG"
+    },
+    "bank_transaction_code": {
+      "description": "Card Payment Foreign",
+      "code": "PMNT",
+      "sub_code": "MCRD"
+    },
+    "credit_debit_indicator": "DBIT",
+    "status": "BOOK",
+    "booking_date": "2025-01-08",
+    "value_date": "2025-01-09",
+    "transaction_date": "2025-01-08",
+    "balance_after_transaction": {
+      "currency": "EUR",
+      "amount": "9086.25"
+    },
+    "reference_number": "CARD-20250108-FX001",
+    "reference_number_schema": "SCOR",
+    "remittance_information": ["Card payment abroad", "Restaurant dinner Paris"],
+    "debtor_account_additional_identification": {
+      "identification": "PT50001000006264381000137",
+      "scheme_name": "IBAN"
+    },
+    "creditor_account_additional_identification": {
+      "identification": "FR7630001007941234567890185",
+      "scheme_name": "IBAN"
+    },
+    "exchange_rate": {
+      "unit_currency": "USD",
+      "exchange_rate": "1.0850",
+      "rate_type": "SPOT",
+      "contract_identification": null,
+      "instructed_amount": {
+        "currency": "EUR",
+        "amount": "-48.29"
+      }
+    },
+    "note": "Dinner during Paris trip",
+    "transaction_id": "TXN-2025010800001"
+  }
+]

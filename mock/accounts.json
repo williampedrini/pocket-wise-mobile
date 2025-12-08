@@ -1,0 +1,20 @@
+{
+  "id": "PT50001000006264381000137",
+  "account_id": {
+    "iban": "PT50001000006264381000137"
+  },
+  "account_servicer": {
+    "bic_fi": "COBADEFFXXX",
+    "clearing_system_member_id": "37040044",
+    "name": "Commerzbank AG"
+  },
+  "name": "Main Checking Account",
+  "details": "Personal checking account for daily transactions",
+  "usage": "PRIV",
+  "cash_account_type": "CACC",
+  "product": "Premium Checking",
+  "currency": "EUR",
+  "psu_status": "ACTIVE",
+  "credit_limit": 5000.00,
+  "uid": "550e8400-e29b-41d4-a716-446655440000"
+}

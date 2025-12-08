@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../domain/entities/transaction.dart';
 
 class MonthlyOverviewChart extends StatelessWidget {
-  const MonthlyOverviewChart({super.key});
+  final List<Transaction> transactions;
+  final String currency;
+
+  const MonthlyOverviewChart({
+    super.key,
+    this.transactions = const [],
+    this.currency = '€',
+  });
 
   @override
   Widget build(BuildContext context) {
+    final chartData = _calculateChartData();
+    final averagePerDay = _calculateAveragePerDay();
+
     return Container(
       margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(20),
@@ -55,12 +66,33 @@ class MonthlyOverviewChart extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              _buildAverageItem(
+                label: 'Avg. Income/Day',
+                value: averagePerDay.avgIncome,
+                color: AppColors.incomeChart,
+              ),
+              _buildAverageItem(
+                label: 'Avg. Expense/Day',
+                value: averagePerDay.avgExpense,
+                color: AppColors.expenseChart,
+              ),
+            ],
+          ),
           const SizedBox(height: 24),
           SizedBox(
-            height: 180,
+            height: 220,
             child: CustomPaint(
-              size: const Size(double.infinity, 180),
-              painter: ChartPainter(),
+              size: const Size(double.infinity, 220),
+              painter: ChartPainter(
+                incomeData: chartData.incomeByDay,
+                expenseData: chartData.expenseByDay,
+                maxValue: chartData.maxValue,
+                currency: currency,
+              ),
             ),
           ),
           const SizedBox(height: 16),
@@ -74,6 +106,121 @@ class MonthlyOverviewChart extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildAverageItem({
+    required String label,
+    required double value,
+    required Color color,
+  }) {
+    return Column(
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            color: AppColors.textSecondary,
+            fontSize: 12,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          '$currency${value.toStringAsFixed(2)}',
+          style: TextStyle(
+            color: color,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+  _AverageData _calculateAveragePerDay() {
+    debugPrint('=== _calculateAveragePerDay ===');
+    debugPrint('Total transactions: ${transactions.length}');
+
+    if (transactions.isEmpty) {
+      debugPrint('No transactions found, returning zeros');
+      return _AverageData(avgIncome: 0, avgExpense: 0);
+    }
+
+    double totalIncome = 0;
+    double totalExpense = 0;
+    final Set<DateTime> uniqueDays = {};
+
+    for (final tx in transactions) {
+      final date = tx.effectiveDate;
+      debugPrint('Transaction: amount=${tx.transactionAmount.amount}, '
+          'currency=${tx.transactionAmount.currency}, '
+          'isCredit=${tx.isCredit}, '
+          'date=$date, '
+          'description=${tx.remittanceInformation}');
+      if (date != null) {
+        uniqueDays.add(DateTime(date.year, date.month, date.day));
+        if (tx.isCredit) {
+          totalIncome += tx.transactionAmount.amount;
+        } else {
+          totalExpense += tx.transactionAmount.amount;
+        }
+      }
+    }
+
+    final daysCount = uniqueDays.isNotEmpty ? uniqueDays.length : 1;
+    debugPrint('Unique days: $daysCount');
+    debugPrint('Total income: $totalIncome, Total expense: $totalExpense');
+    debugPrint('Avg income/day: ${totalIncome / daysCount}, Avg expense/day: ${totalExpense / daysCount}');
+    debugPrint('=== End _calculateAveragePerDay ===');
+
+    return _AverageData(
+      avgIncome: totalIncome / daysCount,
+      avgExpense: totalExpense / daysCount,
+    );
+  }
+
+  _ChartData _calculateChartData() {
+    final Map<int, double> incomeByDay = {};
+    final Map<int, double> expenseByDay = {};
+
+    for (int i = 0; i < 7; i++) {
+      incomeByDay[i] = 0;
+      expenseByDay[i] = 0;
+    }
+
+    if (transactions.isEmpty) {
+      return _ChartData(
+        incomeByDay: List.generate(7, (i) => 0.0),
+        expenseByDay: List.generate(7, (i) => 0.0),
+        maxValue: 150,
+      );
+    }
+
+    for (final tx in transactions) {
+      final date = tx.effectiveDate;
+      if (date != null) {
+        final dayIndex = (date.weekday - 1) % 7;
+        if (tx.isCredit) {
+          incomeByDay[dayIndex] = (incomeByDay[dayIndex] ?? 0) + tx.transactionAmount.amount;
+        } else {
+          expenseByDay[dayIndex] = (expenseByDay[dayIndex] ?? 0) + tx.transactionAmount.amount;
+        }
+      }
+    }
+
+    final incomeList = List.generate(7, (i) => incomeByDay[i] ?? 0.0);
+    final expenseList = List.generate(7, (i) => expenseByDay[i] ?? 0.0);
+
+    double maxValue = 0;
+    for (final value in [...incomeList, ...expenseList]) {
+      if (value > maxValue) maxValue = value;
+    }
+
+    if (maxValue == 0) maxValue = 150;
+
+    return _ChartData(
+      incomeByDay: incomeList,
+      expenseByDay: expenseList,
+      maxValue: maxValue,
     );
   }
 
@@ -101,30 +248,45 @@ class MonthlyOverviewChart extends StatelessWidget {
   }
 }
 
+class _ChartData {
+  final List<double> incomeByDay;
+  final List<double> expenseByDay;
+  final double maxValue;
+
+  _ChartData({
+    required this.incomeByDay,
+    required this.expenseByDay,
+    required this.maxValue,
+  });
+}
+
+class _AverageData {
+  final double avgIncome;
+  final double avgExpense;
+
+  _AverageData({
+    required this.avgIncome,
+    required this.avgExpense,
+  });
+}
+
 class ChartPainter extends CustomPainter {
+  final List<double> incomeData;
+  final List<double> expenseData;
+  final double maxValue;
+  final String currency;
+
+  ChartPainter({
+    required this.incomeData,
+    required this.expenseData,
+    required this.maxValue,
+    this.currency = '€',
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
-    final incomePoints = [
-      Offset(0, size.height * 0.5),
-      Offset(size.width * 0.15, size.height * 0.35),
-      Offset(size.width * 0.3, size.height * 0.45),
-      Offset(size.width * 0.45, size.height * 0.2),
-      Offset(size.width * 0.6, size.height * 0.15),
-      Offset(size.width * 0.75, size.height * 0.35),
-      Offset(size.width * 0.9, size.height * 0.1),
-      Offset(size.width, size.height * 0.05),
-    ];
-
-    final expensePoints = [
-      Offset(0, size.height * 0.6),
-      Offset(size.width * 0.15, size.height * 0.55),
-      Offset(size.width * 0.3, size.height * 0.7),
-      Offset(size.width * 0.45, size.height * 0.45),
-      Offset(size.width * 0.6, size.height * 0.65),
-      Offset(size.width * 0.75, size.height * 0.5),
-      Offset(size.width * 0.9, size.height * 0.55),
-      Offset(size.width, size.height * 0.4),
-    ];
+    final incomePoints = _dataToPoints(incomeData, size);
+    final expensePoints = _dataToPoints(expenseData, size);
 
     // Draw grid lines
     final gridPaint = Paint()
@@ -145,7 +307,7 @@ class ChartPainter extends CustomPainter {
     // Draw x-axis labels
     final days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     final textStyle = TextStyle(color: Colors.grey.shade500, fontSize: 11);
-    
+
     for (int i = 0; i < days.length; i++) {
       final textSpan = TextSpan(text: days[i], style: textStyle);
       final textPainter = TextPainter(
@@ -160,7 +322,12 @@ class ChartPainter extends CustomPainter {
     }
 
     // Draw y-axis labels
-    final amounts = ['\$150', '\$100', '\$50', '\$0'];
+    final amounts = [
+      '$currency${maxValue.toStringAsFixed(0)}',
+      '$currency${(maxValue * 2 / 3).toStringAsFixed(0)}',
+      '$currency${(maxValue / 3).toStringAsFixed(0)}',
+      '${currency}0',
+    ];
     for (int i = 0; i < amounts.length; i++) {
       final textSpan = TextSpan(text: amounts[i], style: textStyle);
       final textPainter = TextPainter(
@@ -175,7 +342,22 @@ class ChartPainter extends CustomPainter {
     }
   }
 
+  List<Offset> _dataToPoints(List<double> data, Size size) {
+    if (data.isEmpty) return [];
+
+    final points = <Offset>[];
+    for (int i = 0; i < data.length; i++) {
+      final x = size.width * i / (data.length - 1);
+      final normalizedValue = maxValue > 0 ? data[i] / maxValue : 0;
+      final y = size.height * (1 - normalizedValue);
+      points.add(Offset(x, y.clamp(0, size.height)));
+    }
+    return points;
+  }
+
   void _drawSmoothLine(Canvas canvas, List<Offset> points, Color color, Size size) {
+    if (points.isEmpty) return;
+
     final linePaint = Paint()
       ..color = color
       ..strokeWidth = 3
@@ -211,5 +393,9 @@ class ChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant ChartPainter oldDelegate) {
+    return oldDelegate.incomeData != incomeData ||
+        oldDelegate.expenseData != expenseData ||
+        oldDelegate.maxValue != maxValue;
+  }
 }
