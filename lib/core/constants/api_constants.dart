@@ -1,4 +1,4 @@
 class ApiConstants {
-  static const String baseUrl = 'https://pocket-wise.ngrok.app';
+  static const String baseUrl = 'https://convenient-judi-spectrochemical.ngrok-free.dev';
   static const Duration timeout = Duration(seconds: 30);
 }

@@ -33,33 +33,8 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(0, Icons.home, 'Home'),
-              _buildNavItem(1, Icons.pie_chart_outline, 'Budget'),
-              const SizedBox(width: 56), // Space for FAB
-              _buildNavItem(2, Icons.credit_card, 'Cards'),
-              _buildNavItem(3, Icons.person_outline, 'Profile'),
+              _buildNavItem(1, Icons.person_outline, 'Profile'),
             ],
-          ),
-          Positioned(
-            top: -20,
-            child: Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                gradient: AppGradients.primaryGradient,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primary.withOpacity(0.4),
-                    blurRadius: 12,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.add, color: Colors.white, size: 28),
-              ),
-            ),
           ),
         ],
       ),

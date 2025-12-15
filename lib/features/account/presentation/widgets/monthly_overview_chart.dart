@@ -33,38 +33,13 @@ class MonthlyOverviewChart extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const Text(
-                'Monthly Overview',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      'This Month',
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 13,
-                      ),
-                    ),
-                    const SizedBox(width: 4),
-                    Icon(Icons.keyboard_arrow_down, size: 18, color: Colors.grey.shade600),
-                  ],
-                ),
-              ),
-            ],
+          const Text(
+            'Monthly Overview',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: AppColors.textPrimary,
+            ),
           ),
           const SizedBox(height: 16),
           Row(
@@ -85,13 +60,16 @@ class MonthlyOverviewChart extends StatelessWidget {
           const SizedBox(height: 24),
           SizedBox(
             height: 220,
-            child: CustomPaint(
-              size: const Size(double.infinity, 220),
-              painter: ChartPainter(
-                incomeData: chartData.incomeByDay,
-                expenseData: chartData.expenseByDay,
-                maxValue: chartData.maxValue,
-                currency: currency,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 25),
+              child: CustomPaint(
+                size: const Size(double.infinity, 220),
+                painter: ChartPainter(
+                  incomeData: chartData.incomeByDay,
+                  expenseData: chartData.expenseByDay,
+                  maxValue: chartData.maxValue,
+                  currency: currency,
+                ),
               ),
             ),
           ),

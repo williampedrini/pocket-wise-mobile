@@ -107,7 +107,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
           }
         }
       } catch (e) {
-        // Transactions fetch failed, continue without them
+        emit(AccountError(e.toString()));
       }
 
       emit(AccountLoaded(

@@ -97,8 +97,7 @@ class TransactionsResponseModel extends TransactionsResponse {
     required super.transactions,
   });
 
-  factory TransactionsResponseModel.fromJson(Map<String, dynamic> json) {
-    final transactionsList = json['transactions'] as List<dynamic>;
+  factory TransactionsResponseModel.fromJson(List<dynamic> transactionsList) {
     return TransactionsResponseModel(
       transactions: transactionsList
           .map((tx) => TransactionModel.fromJson(tx as Map<String, dynamic>))

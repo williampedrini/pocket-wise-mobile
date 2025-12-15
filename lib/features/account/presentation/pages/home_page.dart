@@ -53,6 +53,9 @@ class _HomePageState extends State<HomePage> {
                       currency: currencySymbol,
                       balanceType: balance?.name,
                       lastUpdated: balance?.lastChangeDateTime,
+                      onReload: () => context.read<AccountBloc>().add(
+                        LoadAccount(iban: HomePage.defaultIban),
+                      ),
                     ),
                     const SizedBox(height: 16),
                     MonthlyOverviewChart(

@@ -9,6 +9,7 @@ class BalanceCard extends StatefulWidget {
   final String currency;
   final String? balanceType;
   final DateTime? lastUpdated;
+  final VoidCallback? onReload;
 
   const BalanceCard({
     super.key,
@@ -18,6 +19,7 @@ class BalanceCard extends StatefulWidget {
     this.currency = '€',
     this.balanceType,
     this.lastUpdated,
+    this.onReload,
   });
 
   @override
@@ -82,20 +84,41 @@ class _BalanceCardState extends State<BalanceCard> {
                     ),
                 ],
               ),
-              GestureDetector(
-                onTap: () => setState(() => _isBalanceVisible = !_isBalanceVisible),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(12),
+              Row(
+                children: [
+                  if (widget.onReload != null)
+                    GestureDetector(
+                      onTap: widget.onReload,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Icon(
+                          Icons.refresh,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  if (widget.onReload != null) const SizedBox(width: 8),
+                  GestureDetector(
+                    onTap: () => setState(() => _isBalanceVisible = !_isBalanceVisible),
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(
+                        _isBalanceVisible ? Icons.visibility : Icons.visibility_off,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                  child: Icon(
-                    _isBalanceVisible ? Icons.visibility : Icons.visibility_off,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ),
+                ],
               ),
             ],
           ),

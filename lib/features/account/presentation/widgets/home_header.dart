@@ -53,12 +53,6 @@ class HomeHeader extends StatelessWidget {
               ],
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_outlined),
-            color: AppColors.textSecondary,
-          ),
-          const SizedBox(width: 4),
           CircleAvatar(
             radius: 20,
             backgroundColor: AppColors.primary.withOpacity(0.2),
