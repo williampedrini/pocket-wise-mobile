@@ -10,6 +10,11 @@ class AccountRepositoryImpl implements AccountRepository {
   AccountRepositoryImpl({required this.remoteDataSource});
 
   @override
+  Future<List<Account>> getAccounts() async {
+    return await remoteDataSource.getAccounts();
+  }
+
+  @override
   Future<Account> getAccount(String iban) async {
     return await remoteDataSource.getAccount(iban);
   }

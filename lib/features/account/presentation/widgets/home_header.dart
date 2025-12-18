@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_theme.dart';
+import '../../../../core/widgets/app_logo.dart';
 
 class HomeHeader extends StatelessWidget {
   final String userName;
@@ -17,19 +18,7 @@ class HomeHeader extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
         children: [
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: const Icon(
-              Icons.account_balance_wallet,
-              color: AppColors.primary,
-              size: 24,
-            ),
-          ),
+          const AppLogo(size: 44),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

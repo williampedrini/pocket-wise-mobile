@@ -5,6 +5,7 @@ import '../models/balance_model.dart';
 import '../models/transaction_model.dart';
 
 abstract class AccountRemoteDataSource {
+  Future<List<AccountModel>> getAccounts();
   Future<AccountModel> getAccount(String iban);
   Future<BalanceModel?> getAccountBalance(String iban);
   Future<TransactionsResponseModel> getTransactions(String iban);
@@ -15,6 +16,21 @@ class AccountRemoteDataSourceImpl implements AccountRemoteDataSource {
   final String baseUrl;
 
   AccountRemoteDataSourceImpl({required this.client, required this.baseUrl});
+
+  @override
+  Future<List<AccountModel>> getAccounts() async {
+    final response = await client.get(
+      Uri.parse('$baseUrl/api/accounts'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonList = json.decode(response.body);
+      return jsonList.map((json) => AccountModel.fromJson(json)).toList();
+    } else {
+      throw Exception('Failed to load accounts');
+    }
+  }
 
   @override
   Future<AccountModel> getAccount(String iban) async {

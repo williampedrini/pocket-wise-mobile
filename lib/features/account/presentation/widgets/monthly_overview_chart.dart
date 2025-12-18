@@ -33,12 +33,15 @@ class MonthlyOverviewChart extends StatelessWidget {
       ),
       child: Column(
         children: [
-          const Text(
-            'Monthly Overview',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
+          const Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              'Monthly Overview',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: AppColors.textPrimary,
+              ),
             ),
           ),
           const SizedBox(height: 16),

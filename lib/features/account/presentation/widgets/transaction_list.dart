@@ -63,7 +63,7 @@ class TransactionList extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 12),
             child: Text(
               'Recent Transactions',
               style: TextStyle(
@@ -100,7 +100,7 @@ class TransactionListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isCredit = transaction.isCredit;
-    final amount = transaction.transactionAmount.amount;
+    final amount = transaction.transactionAmount.amount.abs();
     final currency = transaction.transactionAmount.currency == 'EUR' ? '€' : '\$';
     final amountText = '${isCredit ? '+' : '-'}$currency${amount.toStringAsFixed(2)}';
     final amountColor = isCredit ? AppColors.income : AppColors.expense;
